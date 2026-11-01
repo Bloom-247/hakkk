@@ -3,8 +3,8 @@
 The separate sign-in portal behind the **Aegis Sentinel** live capture demo. It looks like a small employee portal,
 records every sign-in attempt, and exposes the capture over HTTP so the Aegis console can ingest it automatically.
 
-- Live portal (Render): <https://northwind-decoy-portal.onrender.com>
-- Aegis console (Vercel): <https://aegis-sentinel-blush.vercel.app/app>
+- Live portal (Render): <https://hakkk.onrender.com>
+- Aegis console (Render): <https://decoy2.onrender.com/app>
 - Build guide: [DEPLOY section](#deploy-on-render) below
 
 **Demo only.** The accounts, passwords and geolocation values are fictional. Passwords are never stored or sent to
@@ -18,7 +18,7 @@ Aegis; only sign-in metadata (email, timestamp, origin, driver, outcome) is writ
 4. The Aegis console polls `/api/events?limit=1000` every two seconds, turns the capture into the **Northwind portal
    logins · live** Logs dataset, and rebuilds the risk score and anomaly register.
 
-Open <https://aegis-sentinel-blush.vercel.app/app> after a few failed attempts to see the dashboard strip, anomaly
+Open <https://decoy2.onrender.com/app> after a few failed attempts to see the dashboard strip, anomaly
 board and Data Input Hub update.
 
 ## Run locally
@@ -37,19 +37,19 @@ Open <http://localhost:4300>. Environment variables:
 | `PORT` | `4300` | port to listen on (Render injects this) |
 | `PORTAL_PORT` | `4300` | local fallback when `PORT` is absent |
 | `PORTAL_HOST` | `0.0.0.0` | bind address |
-| `AEGIS_CONSOLE_URL` | `http://localhost:5173` | Aegis origin used by the portal's console links |
+| `AEGIS_CONSOLE_URL` | `https://decoy2.onrender.com` on Render, `http://localhost:5173` locally | Aegis origin used by the portal's console links |
 
 ## Deploy on Render
 
 This repository is a Render blueprint.
 
 1. In Render, choose **New → Blueprint** and connect this repository.
-2. Render reads `render.yaml` and creates the free Node web service `northwind-decoy-portal`.
-3. Confirm `AEGIS_CONSOLE_URL` is `https://aegis-sentinel-blush.vercel.app` (change it if your console lives
+2. Render reads `render.yaml` and creates the free Node web service `hakkk`.
+3. Confirm `AEGIS_CONSOLE_URL` is `https://decoy2.onrender.com` (change it if your console lives
    elsewhere), then deploy.
-4. Verify `https://northwind-decoy-portal.onrender.com/api/health` returns `ok: true`.
-5. In the Aegis Vercel project, make sure `VITE_PORTAL_API_BASE` is
-   `https://northwind-decoy-portal.onrender.com` (already declared in the Aegis `render.yaml`), and redeploy if the
+4. Verify `https://hakkk.onrender.com/api/health` returns `ok: true` and reports that console origin.
+5. In the Aegis service, make sure `VITE_PORTAL_API_BASE` is
+   `https://hakkk.onrender.com` (declared in the Aegis `render.yaml`), and redeploy if the
    service name differs.
 
 Health checks hit `/api/health`. The service binds `0.0.0.0` and uses Render's `PORT`.

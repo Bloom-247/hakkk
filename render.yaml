@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: northwind-decoy-portal
+    name: hakkk
     runtime: node
     plan: free
     buildCommand: npm install --omit=dev
@@ -8,6 +8,6 @@ services:
     healthCheckPath: /api/health
     envVars:
       - key: AEGIS_CONSOLE_URL
-        value: https://aegis-sentinel-blush.vercel.app
+        value: https://decoy2.onrender.com
       - key: NODE_VERSION
         value: 22.13.0
