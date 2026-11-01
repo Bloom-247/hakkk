@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: northwind-decoy-portal
+    runtime: node
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: AEGIS_CONSOLE_URL
+        value: https://aegis-sentinel-blush.vercel.app
+      - key: NODE_VERSION
+        value: 22.13.0

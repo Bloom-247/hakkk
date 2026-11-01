@@ -1,0 +1,13 @@
+{
+  "name": "northwind-decoy-portal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Fictional Northwind employee sign-in portal that feeds the Aegis Sentinel live capture demo.",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
